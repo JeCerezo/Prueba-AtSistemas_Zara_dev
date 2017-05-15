@@ -1,0 +1,211 @@
+@-webkit-keyframes loader{
+    0%{-webkit-transform: rotateZ(0deg)}
+    100%{-webkit-transform: rotateZ(-360deg)}
+}
+
+/*ESTILOS GENERALES*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+}
+header{
+    width: 80%;
+    margin: 5% auto;
+    position: relative;
+}
+main{
+    width: 80%;
+    margin: 5% auto;
+    text-align: center;
+}
+/*HEADER*/
+
+h1{
+    padding-bottom: 5px;
+    cursor: pointer;
+}
+#loader{
+    display: none;
+    position: absolute;
+    right: 2px;
+    top: 15px;
+    width: 20px;
+    height: 20px;
+    background: url(../images/spiral.png) no-repeat center;
+    background-size: contain;
+    -webkit-animation: loader 2s infinite linear; 
+}
+#borde{
+    width: 100%;
+    border-bottom: 2px solid rgba(0,0,0,.6);
+}
+#counter{
+    margin-right: 10px;
+}
+#counter, #search{
+    float: right;
+    margin-top: 10px;
+    padding: 2px 5px;
+}
+#counter{
+    margin-right: 10px;
+    background-color: blue;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+}
+#search{
+    border-radius: 5px;
+}
+
+/*CONTENIDOS*/
+
+.podcast{
+    width: 250px;
+    margin:75px 2%;
+    padding: 100px 10px 20px 10px;
+    /*float:left;*/
+    display: inline-block;
+    border: 1px solid rgba(0,0,0,.6);
+    box-shadow: 2px 2px 2px rgba(0,0,0,.6); 
+    vertical-align: top;
+    position: relative;
+    word-wrap: break-word;
+    cursor:pointer;
+}
+.podcast img{
+    margin: 0 auto;
+    width: 150px;
+    height: 150px;
+    border: 1px solid #222;
+    border-radius: 150px;
+    position: absolute;
+    top:-75px;
+    left:0;
+    right: 0;
+}
+.podcast h2, .podcast h3{
+    text-align: center;
+    margin-bottom: 1%;
+}
+.podcast h3{
+    display: inline;
+}
+
+/*DETALLE PODCAST*/
+
+#menuleft{
+    width: 30%;
+    float: left;
+    border: 1px solid rgba(0,0,0,.6);
+    box-shadow: 2px 2px 2px rgba(0,0,0,.6);
+    text-align: left;
+    padding-bottom: 15px;
+    overflow: hidden;
+    cursor: pointer;
+}
+#menuleft img{
+   width: 70%;
+   margin: 10px 15%;
+}
+#menuleft > *:not(:first-child){
+    margin: 0 5%;
+}
+#menuleft h2{
+    padding-top: 10px; 
+    border-top: 2px solid rgba(0,0,0,.6);
+}
+#menuleft h3{
+    border-bottom: 2px solid rgba(0,0,0,.6);
+    padding-bottom: 10px;
+    font-weight: normal;
+}
+#menuleft h4{
+    padding-top: 10px;
+}
+#menuleft h3, #menuleft p{
+    font-style: italic;
+}
+#counterright{
+    font-weight: bold;
+    font-size: 1.5em;
+    width: 65%;
+    padding: 10px 2%;
+    float: right;
+    text-align: left;
+    border: 1px solid rgba(0,0,0,.6);
+    box-shadow: 2px 2px 2px rgba(0,0,0,.6);
+}
+#list{
+    margin-top: 20px;
+    float: right;
+    clear: right;
+    width: 65%;
+    border: 1px solid rgba(0,0,0,.6);
+    box-shadow: 2px 2px 2px rgba(0,0,0,.6);
+    padding: 20px 2%;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+td{
+    padding: 3px 5px;
+    margin: 0;
+}
+#tabletitles{
+    font-weight: bold;
+    border-bottom: 2px solid rgba(0,0,0,.3);
+}
+.tablefile{
+    border-bottom: 1px solid rgba(0,0,0,.3);
+}
+tr:nth-child(even){
+    background-color: gainsboro;
+}    
+#tabletitles td:first-of-type, .tablefile td:first-of-type{
+    width:  60%;
+}
+#tabletitles td:nth-of-type(2), #tabletitles td:last-of-type, .tablefile td:nth-of-type(2), .tablefile td:last-of-type{
+    width: 18%;
+}
+#tabletitles td:first-of-type, .tablefile td:first-of-type, #tabletitles td:nth-of-type(2), .tablefile td:nth-of-type(2){
+    text-align: left;
+}
+/*.tablefile td:first-of-type{
+    color: background;
+}*/
+.title{
+    color: #449da6 !important;
+    cursor: pointer;
+}
+
+/*DETALLE EPISODIO*/
+#episode{
+    width: 65%;
+    padding: 10px 2%;
+    float: right;
+    text-align: left;
+    border: 1px solid rgba(0,0,0,.6);
+    box-shadow: 2px 2px 2px rgba(0,0,0,.6);
+}
+#episode h2, #episode p{
+    padding-bottom: 10px;
+}
+#episode p{
+    font-style: italic;
+}
+#episode p:last-of-type{
+    padding-bottom: 20px;
+    border-bottom: 2px solid rgba(0,0,0,.3);   
+}
+audio{
+    width: 100%;
+    margin-top: 15px;
+    background-color: rgba(0,0,0,.8)
+}
+
