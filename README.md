@@ -8,3 +8,5 @@ Después, entrar por consola a dicho directorio y ejecutar el comando 'npm insta
 Después, únicamente ejecutar el comando 'gulp' para lanzar la aplicación en el navegador.
 
 Aclarar que, debido a las diferencias de estructura de los XML de algunos podcast, no he encontrado la manera de que los datos de dichos podcast puedan ser cargados con la misma función genérica.
+
+Aclarar también que el buscador es sensible a las mayúsculas y minúsculas.
