@@ -2,18 +2,18 @@ $(document).ready(function(){
     var dataPodcastList;
 
      //El json con el que sacamos la lista inicial de podcast se guarda inicialmente en localStorage. 
-     //Con la funciÃ³n asignada a la variable 'init', comparamos si ya habido una carga de datos del json
-     //desde la ruta hacia localStorage para la vista principal en las Ãºltimas 24 horas. 
+     //Con la función asignada a la variable 'init', comparamos si ya habido una carga de datos del json
+     //desde la ruta hacia localStorage para la vista principal en las últimas 24 horas. 
      //Si ya ha habido una carga de datos, recurriremos a localStorage; si no la ha habido, 
      //volveremos a cargar el json desde la ruta y lo almacenaremos en memoria*/
     
     var fechaActual = new Date().getTime();
     var dia = 60*1000*60*24;
     
-    //Con estas dos variables globales, cogemos el valor en ms de la fecha actual + 1 dÃ­a para despuÃ©s 
-    //compararlo con la fecha (almacenada en el item 'lastUpdates') tomada en la posterior funciÃ³n 
-    //asignada a 'getDataPodcasts'. AsÃ­ nos aseguramos de no hacer una nueva carga de datos 
-    //desde el json si ya la hemos hecho durante las Ãºltimas 24 horas
+    //Con estas dos variables globales, cogemos el valor en ms de la fecha actual + 1 día para después 
+    //compararlo con la fecha (almacenada en el item 'lastUpdates') tomada en la posterior función 
+    //asignada a 'getDataPodcasts'. Así nos aseguramos de no hacer una nueva carga de datos 
+    //desde el json si ya la hemos hecho durante las últimas 24 horas
     
     var init = function(){
             
@@ -31,7 +31,7 @@ $(document).ready(function(){
     //
     
     
-    //Con la siguiente funciÃ³n cargamos los datos desde el json de la url
+    //Con la siguiente función cargamos los datos desde el json de la url
     
     var getDataPodcasts = function(){
         $('#loader').show();
@@ -55,8 +55,8 @@ $(document).ready(function(){
         });
     };
     
-    //Con la siguiente funciÃ³n createDataInterface pintamos los datos cargados 
-    //con la funciÃ³n getDataPodcasts y/o almacenados en localStorage.
+    //Con la siguiente función createDataInterface pintamos los datos cargados 
+    //con la función getDataPodcasts y/o almacenados en localStorage.
     var createInterface = function(data){
         if(data){
             $('.podcast-list').show();
@@ -72,11 +72,11 @@ $(document).ready(function(){
             $('.podcast').click(function(e){
                 var id = $(this).attr("data-id");
                 console.log(id);               
-                //Al igual que hicimos en la funciÃ³n init para cargar el listado del podcast, creamos un filtro
-                //a travÃ©s de una serie de condicionales para efectuar la carga de los datos
+                //Al igual que hicimos en la función init para cargar el listado del podcast, creamos un filtro
+                //a través de una serie de condicionales para efectuar la carga de los datos
                 //de cada podcast concreto o bien desde localStorage (en caso de habr sido cargados
-                //antes de 24 horas desde la Ãºltima vez) o desde peticiÃ³n directa hacia la URL del RSS
-                //del podcast (si llevamos mÃ¡s de 24 horas sin cargar datos de ese podcast).
+                //antes de 24 horas desde la última vez) o desde petición directa hacia la URL del RSS
+                //del podcast (si llevamos más de 24 horas sin cargar datos de ese podcast).
                 if(localStorage.getItem(id)){
                     if(parseInt(localStorage.getItem(id.TakeDate))+dia <= fechaActual){
                         getPodcastDetailUrl(id);                        
@@ -93,8 +93,8 @@ $(document).ready(function(){
         } 
     };
     
-    //Con la funciÃ³n createPodcastDetail, pintamos los datos de la vista detalle del podcast tras
-    //haber sido cargados con la funciÃ³n getPodcastDetail o tomados desde localStorage.
+    //Con la función createPodcastDetail, pintamos los datos de la vista detalle del podcast tras
+    //haber sido cargados con la función getPodcastDetail o tomados desde localStorage.
     var createPodcastDetail = function(id){
         if(id){
             //Modificamos la variable 'id' para identificarla con 
@@ -123,7 +123,7 @@ $(document).ready(function(){
                         "</tr>"+        
                     "</table>"+
                 "</div>");
-            //aquÃ­ va el each si tuviera un array con las canciones del podcast.
+            //aquí va el each si tuviera un array con las canciones del podcast.
             $.each(id.episodes,function(i){
                 $(".podcast-detail table").append(
                     "<tr class='tablefile'>"+
@@ -135,11 +135,11 @@ $(document).ready(function(){
                 $('#counterright').text("Episodes: "+id.episodes.length);                
                 
             });            
-            var currentURL = document.URL;
-            console.log(currentURL);
-            //AquÃ­ Introducimos el evento click que carga el detalle del episodio
+            //Aquí Introducimos el evento click que carga el detalle del episodio
             $('.title').click(function(){                    
                 var title = $(this).text();                
+                var currentURL = document.URL;
+                console.log(currentURL);
                 $.each(id.episodes,function(i,index){
                     if(id.episodes[i].title == title){
                         $('#episode').append(   
@@ -149,19 +149,19 @@ $(document).ready(function(){
                         );
                         window.history.replaceState(null,null,currentURL+'/Episode/'+id.episodes[i].title);
                     }
-                    //Hemos tomado como variable el nombre del podcast para hacer la bÃºsqueda comparando
-                    //con los nombres de cada objeto del json 'episodes', listÃ¡ndolos con un each. 
+                    //Hemos tomado como variable el nombre del podcast para hacer la búsqueda comparando
+                    //con los nombres de cada objeto del json 'episodes', listándolos con un each. 
                     //Cuando los nombres coincidan, pintaremos los datos seleccionados.
-                    //Para aÃ±adir a la URL el nombre del episodio seleccionado, usamos la funciÃ³n history.pushState
+                    //Para añadir a la URL el nombre del episodio seleccionado, usamos la función history.pushState
                 });               
                 $('#episode').show();
                 $('#counterright,#list').hide();                
-            });
-            //Ahora daremos un evento click al detalle del podcast para volver a mostrar el listado
-            $('#menuleft').click(function(){
-                $('#episode').empty().hide();
-                $('#counterright,#list').show();
-                window.history.replaceState(null,null,currentURL);
+                //Ahora daremos un evento click al detalle del podcast para volver a mostrar el listado
+                $('#menuleft').click(function(){
+                    $('#episode').empty().hide();
+                    $('#counterright,#list').show();
+                    window.history.replaceState(null,null,currentURL);
+                });
             });
         };
     };
@@ -170,32 +170,32 @@ $(document).ready(function(){
 
 
 
-    //Con la funciÃ³n change, comparamos los datos introducidos en el buscador 
-    //con los tÃ­tulos y artistas de los Podcast
+    //Con la función change, comparamos los datos introducidos en el buscador 
+    //con los títulos y artistas de los Podcast
     $('#search').change(function(){
         filtro = $(this).val(); //Almacenamos el valor del buscador en est variable
         if(filtro){
-        var myData = $.extend({},dataPodcastList); //Creamos un array vacÃ­o para llenarlo con los datos del json
+        var myData = $.extend({},dataPodcastList); //Creamos un array vacío para llenarlo con los datos del json
                                                    //de la vista inicial
         var filteredData = myData.feed.entry.filter(function(item){
-            //Creamos una variable asociada a una funciÃ³n que filtrarÃ¡ y nos devolverÃ¡ aquellas entradas del json cuyos
-            //tÃ­tulos y artistas coincidan con los introducidos en el buscador
+            //Creamos una variable asociada a una función que filtrará y nos devolverá aquellas entradas del json cuyos
+            //títulos y artistas coincidan con los introducidos en el buscador
             return item['im:name'].label.indexOf(filtro) != -1 || item['im:artist'].label.indexOf(filtro) != -1; 
         });
-        createInterface(filteredData); //Invocamos la funciÃ³n que pinta la vista principal,
+        createInterface(filteredData); //Invocamos la función que pinta la vista principal,
                                        //pero solo con los datos del filtro
         }else{
             $('.podcast').show();
             createInterface(dataPodcastList.feed.entry);
         }           
-    }).keyup(function(){ //Concatenando la funciÃ³n keyup, nos aseguramos de que la funciÃ³n change
-                        //sÃ³lo actÃºe al soltar las teclas cuando tecleamos.
+    }).keyup(function(){ //Concatenando la función keyup, nos aseguramos de que la función change
+                        //sólo actúe al soltar las teclas cuando tecleamos.
        $(this).change(); 
     });
     
     
     
-    // Hacemos la peticiÃ³n de la URL donde estÃ¡ el XML de donde sacaremos los datos para pintar
+    // Hacemos la petición de la URL donde está el XML de donde sacaremos los datos para pintar
     //el detalle del podcast.
     var getPodcastDetailUrl = function(id){
         $('#loader').show();
@@ -208,7 +208,7 @@ $(document).ready(function(){
             success: function(json){
                     var url = json.results[0].feedUrl;
                     /*localStorage.setItem(id,String(new Date().getTime()))*/; //Guardamos la fecha en la que hicimos
-                                                                           //la peticiÃ³n de la url
+                                                                           //la petición de la url
                     getPodcastDetail(url,id);
                     console.log(url);
             },
@@ -224,10 +224,10 @@ $(document).ready(function(){
     
     
     
-    //Con la siguiente funciÃ³n cargamos los datos en XML a travÃ©s de la URL pasada
-    //a travÃ©s de la anterior funciÃ³n
+    //Con la siguiente función cargamos los datos en XML a través de la URL pasada
+    //a través de la anterior función
     var getPodcastDetail = function(url,id){
-        /*$('#loader').show();*/
+        $('#loader').show();
         $.ajax({
             type:"GET",
             url:"https://crossorigin.me/"+url,
@@ -253,18 +253,17 @@ $(document).ready(function(){
                           });                                   
                     });
                     //Ahora guardamos ambos conjuntos de datos en localStorage como string
-                    //con la intenciÃ³n de poder cargarlos desde ahÃ­ si lo necesitamos, 
+                    //con la intención de poder cargarlos desde ahí si lo necesitamos, 
                     //y despues los devolvemos a su estado de ficheros json para su uso en
-                    //la funciÃ³n createPodcastDetail.
+                    //la función createPodcastDetail.
                     localStorage.setItem(id,JSON.stringify(dataPod));
-                    /*id = JSON.parse(localStorage.getItem(id));*/
                     createPodcastDetail(id);
             },
             error: function(){
                 console.log('no se ha cargado el json');
             },
             complete: function(){
-                    /*$('#loader').hide();*/
+                    $('#loader').hide();
             }
         });
     };
@@ -272,21 +271,20 @@ $(document).ready(function(){
     
     
     $('h1').click(function(){
-        page('/'); //con la funcion page, al hacer click en el tÃ­tulo de la pÃ¡gina la url se vacÃ­a
+        page('/'); //con la funcion page, al hacer click en el título de la página la url se vacía
     });
 
-    page('/', init);/*con la misma funciÃ³n page, cuando la url estÃ¡ vacÃ­a,
-                 se invoca la funciÃ³n init que carga la vista principal*/
+    page('/', init);/*con la misma función page, cuando la url está vacía,
+                 se invoca la función init que carga la vista principal*/
 
     page('/podcast/:id', function(context){
-        var podcastId = context.params.id; //en la funcion page, usamos el parametro context, junto con params
-                                           // para tomar un elemento de la url, en este caso el id 
-        createPodcastDetail(podcastId);                                   
+        var id = context.params.id; //en la funcion page, usamos el parametro context, junto con params
+                                           // para tomar un elemento de la url, en este caso el id                                    
     });
     
     
     
-    page(); //con esta funciÃ³n iniciamos la librerÃ­a page() de node.js
+    page(); //con esta función iniciamos la librería page() de node.js
 
 
 
